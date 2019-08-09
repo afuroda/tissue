@@ -15,6 +15,9 @@ class GameScene: SKScene {
     var tissue=SKSpriteNode()
     //tissueノードの位置
     var tissueY=CGFloat()
+    var tissueX=CGFloat()
+    //タッチ判定ノード
+    var touchNode=SKSpriteNode()
     
     
     override func didMove(to view: SKView) {
@@ -24,6 +27,9 @@ class GameScene: SKScene {
         makeFirstView()
         makeTissue()
         makeAboveBox()
+        makeTouch()
+        
+        print(UIScreen.main.bounds.height)
         
        
         
@@ -32,24 +38,69 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let location = touch.location(in: self)
-            if self.atPoint(location).name == "tissue"{
+            if self.atPoint(location).name == "touch"{
             
             let newPosition = touch.location(in: self)
             
             let oldPosition = touch.previousLocation(in: self)
-            let xTranslation = newPosition.y - oldPosition.y
+            let yTranslation = newPosition.y - oldPosition.y
+            let xTranslation = newPosition.x - oldPosition.x
             
             
             tissueY=tissue.position.y
-            tissueY += xTranslation
-            
-            //blockNodeを動かすアニメーション
-            let tissueAnimation=SKAction.moveTo(y: tissueY, duration: 0.0)
-            tissue.run(tissueAnimation, withKey: "block anime")
+            tissueY += yTranslation
+                
+            tissueX=tissue.position.x
+            tissueX+=xTranslation
+                
+                
+            //tissueを動かすアニメーション
+            let tissueAnimation=SKAction.move(to: CGPoint(x: tissueX, y: tissueY), duration: 0.0)
+            let tissueReAnimation=SKAction.moveTo(y: UIScreen.main.bounds.height * 0.45, duration: 0.0)
+                if tissue.position.y>UIScreen.main.bounds.height * 0.449{
+            tissue.run(tissueAnimation, withKey: "tissue anime")
+                }
+                
+                if tissue.position.y<UIScreen.main.bounds.height * 0.449{
+                    tissue.run(tissueReAnimation)
+                }
             }
+            
             
         }
         
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches{
+            let location = touch.location(in: self)
+            if self.atPoint(location).name == "touch"{
+            
+                if touch.location(in: self).x<UIScreen.main.bounds.width*0.2{
+                    let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-600, y: touch.location(in: self).y+600), duration: 0.2)
+                    tissue.run(tissueRemoveAnimation)
+                    print("patern1")
+                }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.2 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.4{
+                    let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-300, y: touch.location(in: self).y+600), duration: 0.2)
+                    tissue.run(tissueRemoveAnimation)
+                    print("patern2")
+                }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.4 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.6{
+                    let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x, y: touch.location(in: self).y+600), duration: 0.2)
+                    tissue.run(tissueRemoveAnimation)
+                    print("patern3")
+                }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.6 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.8{
+                    let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x+300, y: touch.location(in: self).y+600), duration: 0.2)
+                    tissue.run(tissueRemoveAnimation)
+                    print("patern4")
+                }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.8 && touch.location(in: self).x<UIScreen.main.bounds.width{
+                    let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x+600, y: touch.location(in: self).y+600), duration: 0.2)
+                    tissue.run(tissueRemoveAnimation)
+                    print("patern5")
+                }
+                
+            }
+            
+    }
     }
     
     func makeFirstView(){
@@ -77,6 +128,15 @@ class GameScene: SKScene {
         self.addChild(tissue)
     }
     
+    func makeTouch(){
+        touchNode=SKSpriteNode()
+        touchNode.size=CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.6)
+        touchNode.position=CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height * 0.75)
+        touchNode.zPosition=1
+        touchNode.name="touch"
+        self.addChild(touchNode)
+    }
+    
     func makeAboveBox(){
         let AboveBox=SKSpriteNode(imageNamed: "aboveBox")
         AboveBox.size=CGSize(width: UIScreen.main.bounds.width * 0.87, height: UIScreen.main.bounds.width * 0.573)
@@ -84,6 +144,13 @@ class GameScene: SKScene {
             * 0.6)
         AboveBox.zPosition=1
         self.addChild(AboveBox)
+    }
+    
+    func removeTissue(){
+        if tissue.position.y <= UIScreen.main.bounds.height / 2{
+            let tissueRemoveAnimation=SKAction.moveTo(y: UIScreen.main.bounds.height, duration: 1)
+            tissue.run(tissueRemoveAnimation)
+        }
     }
 
     
