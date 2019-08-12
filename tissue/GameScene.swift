@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //tissueノード
     var tissue=SKSpriteNode()
@@ -18,9 +18,16 @@ class GameScene: SKScene {
     var tissueX=CGFloat()
     //タッチ判定ノード
     var touchNode=SKSpriteNode()
+    //当たり判定用のノード
+    var leftBar=SKSpriteNode()
+    var rightBar=SKSpriteNode()
+    var topBar=SKSpriteNode()
     
     
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate=self
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         
         makeUnderBox()
@@ -28,8 +35,8 @@ class GameScene: SKScene {
         makeTissue()
         makeAboveBox()
         makeTouch()
+        makeHitTopBar()
         
-        print(UIScreen.main.bounds.height)
         
        
         
@@ -75,32 +82,43 @@ class GameScene: SKScene {
         for touch in touches{
             let location = touch.location(in: self)
             if self.atPoint(location).name == "touch"{
-            
+
                 if touch.location(in: self).x<UIScreen.main.bounds.width*0.2{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-600, y: touch.location(in: self).y+600), duration: 0.2)
                     tissue.run(tissueRemoveAnimation)
-                    print("patern1")
+
+
                 }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.2 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.4{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-300, y: touch.location(in: self).y+600), duration: 0.2)
                     tissue.run(tissueRemoveAnimation)
-                    print("patern2")
+
                 }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.4 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.6{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x, y: touch.location(in: self).y+600), duration: 0.2)
                     tissue.run(tissueRemoveAnimation)
-                    print("patern3")
+
                 }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.6 && touch.location(in: self).x<UIScreen.main.bounds.width * 0.8{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x+300, y: touch.location(in: self).y+600), duration: 0.2)
                     tissue.run(tissueRemoveAnimation)
-                    print("patern4")
+
                 }else if touch.location(in: self).x>=UIScreen.main.bounds.width * 0.8 && touch.location(in: self).x<UIScreen.main.bounds.width{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x+600, y: touch.location(in: self).y+600), duration: 0.2)
                     tissue.run(tissueRemoveAnimation)
-                    print("patern5")
+
                 }
-                
+
             }
-            
+
     }
+    }
+    
+    // SKPhysicsContactDelegateのメソッド。衝突したときに呼ばれる
+    func didBegin(_ contact: SKPhysicsContact) {
+
+        
+        if contact.bodyA.categoryBitMask == 0b0001 || contact.bodyB.categoryBitMask == 0b0001 {
+            print("touch")
+        }
+        
     }
     
     func makeFirstView(){
@@ -119,11 +137,30 @@ class GameScene: SKScene {
         self.addChild(UnderBox)
     }
     
+    func makeHitTopBar(){
+        topBar.size=CGSize(width: UIScreen.main.bounds.width, height: 30)
+        topBar.position=CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height*0.8)
+        topBar.color=UIColor.black
+        topBar.physicsBody=SKPhysicsBody(rectangleOf: topBar.size)
+        topBar.physicsBody?.categoryBitMask=0b0001
+        topBar.physicsBody?.collisionBitMask=0b0001
+        topBar.physicsBody?.isDynamic=true
+        topBar.physicsBody?.affectedByGravity=false
+        
+        self.addChild(topBar)
+    }
+    
     func makeTissue(){
         tissue=SKSpriteNode(imageNamed: "tissue")
         tissue.size=CGSize(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.5)
         tissue.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.45)
         tissue.zPosition=0.8
+        tissue.physicsBody=SKPhysicsBody(rectangleOf: tissue.size)
+        tissue.physicsBody?.categoryBitMask=0b0010
+        tissue.physicsBody?.contactTestBitMask=0b0001
+        tissue.physicsBody?.collisionBitMask=0b0010
+        tissue.physicsBody?.affectedByGravity=false
+        
         tissue.name="tissue"
         self.addChild(tissue)
     }
@@ -145,6 +182,7 @@ class GameScene: SKScene {
         AboveBox.zPosition=1
         self.addChild(AboveBox)
     }
+    
     
     func removeTissue(){
         if tissue.position.y <= UIScreen.main.bounds.height / 2{
