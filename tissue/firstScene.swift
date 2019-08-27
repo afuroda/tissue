@@ -22,21 +22,14 @@ class firstScene : SKScene{
     
     }
     
-    @objc func gameStart(){
-        let scene = GameScene(size: self.scene!.size)
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene)
-        print("push")
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first as UITouch? {
             let location = touch.location(in: self)
             if self.atPoint(location).name == "start" {
-                let scene = GameScene(size: self.scene!.size)
+                let scene = BeforeScene(size: self.scene!.size)
                 scene.scaleMode = SKSceneScaleMode.aspectFill
                 self.view!.presentScene(scene)
-                print("push")
                 
             }
         }
