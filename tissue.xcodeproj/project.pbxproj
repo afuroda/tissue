@@ -22,6 +22,7 @@
 		1E24479D2368C3E000188EAC /* gameSound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479B2368C3E000188EAC /* gameSound2.mp3 */; };
 		1E24479E2368C3E000188EAC /* gameSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479C2368C3E000188EAC /* gameSound.mp3 */; };
 		1E2447A02368C4F500188EAC /* sound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479F2368C4F500188EAC /* sound2.mp3 */; };
+		61BB96ECE2446AB7F48BAE49 /* Pods_tissue_tissueUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ADE3D45D826A540E5AD156 /* Pods_tissue_tissueUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0931FCECDDCB88DA39FD6B9C /* Pods_tissue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tissue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E109A7F2306F0D0006BCB82 /* Before.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Before.swift; sourceTree = "<group>"; };
 		1E1375E822E23901009705BB /* tissue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tissue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1375EB22E23901009705BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,11 @@
 		1E24479B2368C3E000188EAC /* gameSound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameSound2.mp3; sourceTree = "<group>"; };
 		1E24479C2368C3E000188EAC /* gameSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameSound.mp3; sourceTree = "<group>"; };
 		1E24479F2368C4F500188EAC /* sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound2.mp3; sourceTree = "<group>"; };
+		22BDDADA36FBEB2B2C498528 /* Pods-tissue-tissueUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tissue-tissueUITests.debug.xcconfig"; path = "Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C2C8E06D31207D5277505F6 /* Pods-tissue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tissue.release.xcconfig"; path = "Target Support Files/Pods-tissue/Pods-tissue.release.xcconfig"; sourceTree = "<group>"; };
+		A12895C8BAA845B5BBE92517 /* Pods-tissue-tissueUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tissue-tissueUITests.release.xcconfig"; path = "Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B8413ED9D7FF592A5A651B43 /* Pods-tissue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tissue.debug.xcconfig"; path = "Target Support Files/Pods-tissue/Pods-tissue.debug.xcconfig"; sourceTree = "<group>"; };
+		C9ADE3D45D826A540E5AD156 /* Pods_tissue_tissueUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tissue_tissueUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BB96ECE2446AB7F48BAE49 /* Pods_tissue_tissueUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +89,7 @@
 				1E13760522E23903009705BB /* tissueUITests */,
 				1E1375E922E23901009705BB /* Products */,
 				D1FE06A69076DA8E1124E7CC /* Pods */,
+				A10EE0BF470079D2A3A7C125 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,9 +133,22 @@
 			path = tissueUITests;
 			sourceTree = "<group>";
 		};
+		A10EE0BF470079D2A3A7C125 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0931FCECDDCB88DA39FD6B9C /* Pods_tissue.framework */,
+				C9ADE3D45D826A540E5AD156 /* Pods_tissue_tissueUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D1FE06A69076DA8E1124E7CC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B8413ED9D7FF592A5A651B43 /* Pods-tissue.debug.xcconfig */,
+				7C2C8E06D31207D5277505F6 /* Pods-tissue.release.xcconfig */,
+				22BDDADA36FBEB2B2C498528 /* Pods-tissue-tissueUITests.debug.xcconfig */,
+				A12895C8BAA845B5BBE92517 /* Pods-tissue-tissueUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -138,9 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E13760B22E23903009705BB /* Build configuration list for PBXNativeTarget "tissue" */;
 			buildPhases = (
+				1ABFEAE368386B4B7197D648 /* [CP] Check Pods Manifest.lock */,
 				1E1375E422E23901009705BB /* Sources */,
 				1E1375E522E23901009705BB /* Frameworks */,
 				1E1375E622E23901009705BB /* Resources */,
+				A7D133B4E7F441F26B116C85 /* [CP] Embed Pods Frameworks */,
+				A22665721D0C03CB3E067A8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E13760E22E23903009705BB /* Build configuration list for PBXNativeTarget "tissueUITests" */;
 			buildPhases = (
+				3CD672150607DACAC539A56D /* [CP] Check Pods Manifest.lock */,
 				1E1375FE22E23903009705BB /* Sources */,
 				1E1375FF22E23903009705BB /* Frameworks */,
 				1E13760022E23903009705BB /* Resources */,
+				15600D38D50B6D98F0CA067A /* [CP] Embed Pods Frameworks */,
+				9617425D386BA5E048AC75C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,6 +260,121 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15600D38D50B6D98F0CA067A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1ABFEAE368386B4B7197D648 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tissue-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CD672150607DACAC539A56D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tissue-tissueUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9617425D386BA5E048AC75C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A22665721D0C03CB3E067A8B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7D133B4E7F441F26B116C85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tissue/Pods-tissue-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E1375E422E23901009705BB /* Sources */ = {
@@ -401,7 +544,9 @@
 		};
 		1E13760C22E23903009705BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8413ED9D7FF592A5A651B43 /* Pods-tissue.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3BS9GW6DM;
@@ -415,7 +560,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kokiyamguchi.tissue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -425,7 +570,9 @@
 		};
 		1E13760D22E23903009705BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C2C8E06D31207D5277505F6 /* Pods-tissue.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3BS9GW6DM;
@@ -439,8 +586,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kokiyamguchi.tissue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -450,6 +596,7 @@
 		};
 		1E13760F22E23903009705BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22BDDADA36FBEB2B2C498528 /* Pods-tissue-tissueUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,6 +616,7 @@
 		};
 		1E13761022E23903009705BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A12895C8BAA845B5BBE92517 /* Pods-tissue-tissueUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
