@@ -110,14 +110,21 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if(!intersects(tissue)){
+            makeTissue()
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches{
             let location = touch.location(in: self)
             if self.atPoint(location).name == "touch"{
                 
-                playSound1()
-                if(tissue.position.y != UIScreen.main.bounds.height * 0.45){
                 
+                if(tissue.position.y>=UIScreen.main.bounds.height * 0.45 + 1){
+                    playSound1()
+                    
                 if touch.location(in: self).x<UIScreen.main.bounds.width*0.2{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-600, y: touch.location(in: self).y+600), duration: 0.4)
                     tissue.run(tissueRemoveAnimation)
@@ -194,7 +201,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             }
                 scoreLabel.text=String(scoreCount)
             makeTissue()
-            print("position3")
+          
         }
         
         
@@ -208,19 +215,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     func makeUnderBox(){
-        print(UIScreen.main.bounds.width)
+        print(UIScreen.main.bounds.height)
         let UnderBox=SKSpriteNode(imageNamed: "box")
         UnderBox.size=CGSize(width: UIScreen.main.bounds.width * 0.87, height: UIScreen.main.bounds.width * 0.573)
-        if(UIScreen.main.bounds.width==375){
-            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.6)
-        }else if(UIScreen.main.bounds.width==414){
-            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.8)
-        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
-            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.5)
-        }
+       UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height
+        * 0.35)
         
         UnderBox.zPosition=0.6
         self.addChild(UnderBox)
@@ -233,9 +232,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         resultLabel.text="今回の記録\(String(scoreCount))枚!!"
         resultLabel.backgroundColor=UIColor.cyan
         resultLabel.textAlignment=NSTextAlignment.center
-        if(UIScreen.main.bounds.width==375 || UIScreen.main.bounds.width==414){
+        if(UIScreen.main.bounds.width<=414){
         resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
-        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768){
+        }else if(UIScreen.main.bounds.width >= 834){
             resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
         }
         resultLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.1)
@@ -246,9 +245,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     func makeResultLabelCover(){
         resultLabelCover.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.3)
         resultLabelCover.backgroundColor=UIColor.green
-        if(UIScreen.main.bounds.width==375 || UIScreen.main.bounds.width==414){
+        if(UIScreen.main.bounds.width<=414){
         resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
-        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
+        }else if(UIScreen.main.bounds.width>=834){
             resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
         }
         self.view?.addSubview(resultLabelCover)
@@ -303,7 +302,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         tissue.name="tissue"
         self.addChild(tissue)
-        print("maketissue")
+        
     }
     
     func makeTouch(){
@@ -349,18 +348,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         let AboveBox=SKSpriteNode(imageNamed: "aboveBox")
         AboveBox.size=CGSize(width: UIScreen.main.bounds.width * 0.87, height: UIScreen.main.bounds.width * 0.573)
         
-        if(UIScreen.main.bounds.width==375){
-            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.6)
-            
-        }else if(UIScreen.main.bounds.width==414){
-            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.8)
-            
-        }else if( UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
-            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
-            * 0.5)
-        }
+       AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height
+       * 0.35)
         
         AboveBox.zPosition=1
         self.addChild(AboveBox)
