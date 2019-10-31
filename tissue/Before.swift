@@ -40,6 +40,18 @@ class BeforeScene : SKScene{
         let t=Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timer), userInfo: nil, repeats: true)
     }
     
+    //カウントダウンの音(3.2.1)
+    func playSound2(){
+        let sound:SKAction = SKAction.playSoundFileNamed("sound3.mp3", waitForCompletion: true)
+        self.run(sound)
+    }
+    
+    //カウントダウンの音(0)
+    func playSound3(){
+        let sound:SKAction = SKAction.playSoundFileNamed("sound4.mp3", waitForCompletion: true)
+        self.run(sound)
+    }
+    
     func makeLabel(){
         // ラベルを作る
         countLabel = UILabel(frame: CGRect(x:0,y:0,width:UIScreen.main.bounds.width*0.5,height:UIScreen.main.bounds.height*0.5))
@@ -68,6 +80,12 @@ class BeforeScene : SKScene{
             scene.scaleMode = SKSceneScaleMode.aspectFill
             self.view!.presentScene(scene)
             countLabel.removeFromSuperview()
+        }
+        
+        if count >= 1{
+            playSound2()
+        }else if count == 0{
+            playSound3()
         }
         countLabel.text=String(count)
         count-=1

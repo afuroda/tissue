@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class firstScene : SKScene{
+    
+    //bgm
+    var player:AVAudioPlayer!
+    let soundFilePath : NSString = Bundle.main.path(forResource: "gameSound2", ofType: "mp3")! as NSString
     
     
     override func didMove(to view: SKView) {
@@ -18,6 +23,7 @@ class firstScene : SKScene{
         makeFirstView()
         makeStartBtn()
         makeCollectionBtn()
+        playBgm()
         
     
     }
@@ -32,7 +38,29 @@ class firstScene : SKScene{
                 self.view!.presentScene(scene)
                 
             }
+            
+            if let touch = touches.first as UITouch? {
+                let location = touch.location(in: self)
+                if self.atPoint(location).name == "tweet" {
+                    //twitterに投稿したい文章をtextに入れる
+                    let text = "暇つぶしに最適!!\nみんなも遊んでみてね！"
+                    
+                    //.urlQueryAllowed : URLクエリ内で使用できる文字列で返却する
+                    guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
+                    
+                    guard let twitterURL = URL(string: "https://twitter.com/intent/tweet?text=\(encodedText)") else {return}
+                    
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(twitterURL, options:[:], completionHandler: nil)
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
+                }
+            
+            
         }
+    }
     }
     
     
@@ -53,11 +81,25 @@ class firstScene : SKScene{
     }
     
     func makeCollectionBtn(){
-        let collectionBtn=SKSpriteNode(imageNamed: "seeCollection")
+        let collectionBtn=SKSpriteNode(imageNamed: "tweet")
         collectionBtn.size=CGSize(width: UIScreen.main.bounds.width * 0.34, height: UIScreen.main.bounds.width * 0.27)
         collectionBtn.position=CGPoint(x: UIScreen.main.bounds.width - UIScreen.main.bounds.width * 0.25, y: UIScreen.main.bounds.width * 0.578)
-        collectionBtn.name="collection"
+        collectionBtn.name="tweet"
         self.addChild(collectionBtn)
+    }
+    
+    //bgm
+    func playBgm(){
+        let fileURL : NSURL = NSURL(fileURLWithPath: soundFilePath as String)
+        do{
+            player = try AVAudioPlayer(contentsOf: fileURL as URL)
+            player.numberOfLoops = -1
+            player.volume=0.4
+        }catch{
+            print("error")
+        }
+        
+        player.play()
     }
     
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,12 @@
 		1E1375FC22E23903009705BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1375FA22E23903009705BB /* LaunchScreen.storyboard */; };
 		1E13760722E23903009705BB /* tissueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E13760622E23903009705BB /* tissueUITests.swift */; };
 		1E13761222E240AC009705BB /* firstScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E13761122E240AC009705BB /* firstScene.swift */; };
+		1E2447982368C0CC00188EAC /* sound4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E2447952368C0CC00188EAC /* sound4.mp3 */; };
+		1E2447992368C0CC00188EAC /* sound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E2447962368C0CC00188EAC /* sound1.mp3 */; };
+		1E24479A2368C0CC00188EAC /* sound3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E2447972368C0CC00188EAC /* sound3.mp3 */; };
+		1E24479D2368C3E000188EAC /* gameSound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479B2368C3E000188EAC /* gameSound2.mp3 */; };
+		1E24479E2368C3E000188EAC /* gameSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479C2368C3E000188EAC /* gameSound.mp3 */; };
+		1E2447A02368C4F500188EAC /* sound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E24479F2368C4F500188EAC /* sound2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		1E13760622E23903009705BB /* tissueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tissueUITests.swift; sourceTree = "<group>"; };
 		1E13760822E23903009705BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E13761122E240AC009705BB /* firstScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstScene.swift; sourceTree = "<group>"; };
+		1E2447952368C0CC00188EAC /* sound4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound4.mp3; sourceTree = "<group>"; };
+		1E2447962368C0CC00188EAC /* sound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound1.mp3; sourceTree = "<group>"; };
+		1E2447972368C0CC00188EAC /* sound3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound3.mp3; sourceTree = "<group>"; };
+		1E24479B2368C3E000188EAC /* gameSound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameSound2.mp3; sourceTree = "<group>"; };
+		1E24479C2368C3E000188EAC /* gameSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameSound.mp3; sourceTree = "<group>"; };
+		1E24479F2368C4F500188EAC /* sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound2.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 				1E1375EA22E23901009705BB /* tissue */,
 				1E13760522E23903009705BB /* tissueUITests */,
 				1E1375E922E23901009705BB /* Products */,
+				D1FE06A69076DA8E1124E7CC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,15 +96,21 @@
 		1E1375EA22E23901009705BB /* tissue */ = {
 			isa = PBXGroup;
 			children = (
+				1E24479C2368C3E000188EAC /* gameSound.mp3 */,
+				1E24479B2368C3E000188EAC /* gameSound2.mp3 */,
+				1E2447962368C0CC00188EAC /* sound1.mp3 */,
+				1E24479F2368C4F500188EAC /* sound2.mp3 */,
+				1E2447972368C0CC00188EAC /* sound3.mp3 */,
+				1E2447952368C0CC00188EAC /* sound4.mp3 */,
 				1E1375EB22E23901009705BB /* AppDelegate.swift */,
 				1E1375F122E23901009705BB /* GameScene.swift */,
 				1E1375F322E23901009705BB /* GameViewController.swift */,
 				1E1375F522E23901009705BB /* Main.storyboard */,
 				1E1375F822E23903009705BB /* Assets.xcassets */,
 				1E1375FA22E23903009705BB /* LaunchScreen.storyboard */,
-				1E1375FD22E23903009705BB /* Info.plist */,
 				1E13761122E240AC009705BB /* firstScene.swift */,
 				1E109A7F2306F0D0006BCB82 /* Before.swift */,
+				1E1375FD22E23903009705BB /* Info.plist */,
 			);
 			path = tissue;
 			sourceTree = "<group>";
@@ -103,6 +122,13 @@
 				1E13760822E23903009705BB /* Info.plist */,
 			);
 			path = tissueUITests;
+			sourceTree = "<group>";
+		};
+		D1FE06A69076DA8E1124E7CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,8 +212,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2447992368C0CC00188EAC /* sound1.mp3 in Resources */,
 				1E1375F722E23901009705BB /* Main.storyboard in Resources */,
+				1E24479D2368C3E000188EAC /* gameSound2.mp3 in Resources */,
 				1E1375F922E23903009705BB /* Assets.xcassets in Resources */,
+				1E24479A2368C0CC00188EAC /* sound3.mp3 in Resources */,
+				1E2447A02368C4F500188EAC /* sound2.mp3 in Resources */,
+				1E2447982368C0CC00188EAC /* sound4.mp3 in Resources */,
+				1E24479E2368C3E000188EAC /* gameSound.mp3 in Resources */,
 				1E1375FC22E23903009705BB /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +337,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -359,6 +391,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -372,13 +405,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3BS9GW6DM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/tissue",
+				);
 				INFOPLIST_FILE = tissue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.koki.yamguchi.tissue;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kokiyamguchi.tissue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -391,13 +429,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z3BS9GW6DM;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/tissue",
+				);
 				INFOPLIST_FILE = tissue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.koki.yamguchi.tissue;
+				OTHER_LDFLAGS = "$(inherited)";
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kokiyamguchi.tissue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

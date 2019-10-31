@@ -8,6 +8,8 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
 
 class GameScene: SKScene,SKPhysicsContactDelegate {
     
@@ -24,8 +26,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var rightBar=SKSpriteNode()
     var hitBar=SKSpriteNode()
     
-    //tissuenode入れる配列
-    var tissueArray=[SKSpriteNode()]
+   
     
     //制限時間
     var count=14
@@ -40,6 +41,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //結果表示用
     var resultLabel=UILabel()
+    var resultLabelCover=UILabel()
+    
+    //bgm
+    var player:AVAudioPlayer!
+    let soundFilePath : NSString = Bundle.main.path(forResource: "gameSound", ofType: "mp3")! as NSString
     
     
     
@@ -57,9 +63,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         makeTimerLabel()
         makeTimer()
         makeScoreLabelNode()
-        
-        
-        
+        playBgm()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -95,12 +99,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                 }
             }
             
-            if self.atPoint(location).name == "restart"{
-                resultLabel.removeFromSuperview()
-                let scene = BeforeScene(size: self.scene!.size)
-                scene.scaleMode = SKSceneScaleMode.aspectFill
-                self.view!.presentScene(scene)
-            }
+            
+            
+            
+            
+            
             
             
         }
@@ -111,6 +114,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         for touch in touches{
             let location = touch.location(in: self)
             if self.atPoint(location).name == "touch"{
+                
+                playSound1()
+                if(tissue.position.y != UIScreen.main.bounds.height * 0.45){
                 
                 if touch.location(in: self).x<UIScreen.main.bounds.width*0.2{
                     let tissueRemoveAnimation=SKAction.move(to: CGPoint(x: touch.location(in: self).x-600, y: touch.location(in: self).y+600), duration: 0.4)
@@ -134,7 +140,32 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                     tissue.run(tissueRemoveAnimation)
                     
                 }
+                }
                 
+            }
+            
+            if self.atPoint(location).name == "restart"{
+                resultLabel.removeFromSuperview()
+                resultLabelCover.removeFromSuperview()
+                let scene = BeforeScene(size: self.scene!.size)
+                scene.scaleMode = SKSceneScaleMode.aspectFill
+                self.view!.presentScene(scene)
+            }
+            
+            if self.atPoint(location).name == "tweet"{
+                //twitterに投稿したい文章をtextに入れる
+                let text = "今回の記録は\(scoreCount)枚だったよ!!"
+                
+                //.urlQueryAllowed : URLクエリ内で使用できる文字列で返却する
+                guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
+                
+                guard let twitterURL = URL(string: "https://twitter.com/intent/tweet?text=\(encodedText)") else {return}
+                
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(twitterURL, options:[:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             
         }
@@ -145,18 +176,25 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         
         if contact.bodyA.categoryBitMask == 0b0001 || contact.bodyB.categoryBitMask == 0b0001 {
-            if tissueArray.count==2{
-                tissue.removeFromParent()
-                tissueArray.removeLast()
-                scoreCount+=1
-                scoreLabel.text=String(scoreCount)
-            }
-            
            
-            
-            if tissueArray.count==1{
-                makeTissue()
+                tissue.removeFromParent()
+                scoreCount+=1
+            if scoreCount >= 30 && scoreCount <= 40{
+                scoreLabel.fontColor=UIColor.blue
+            }else if scoreCount >= 41 && scoreCount <= 50{
+                scoreLabel.fontColor=UIColor.yellow
+            }else if scoreCount >= 51 && scoreCount <= 60{
+                scoreLabel.fontColor=UIColor.green
+            }else if scoreCount >= 61 && scoreCount <= 70{
+                scoreLabel.fontColor=UIColor.red
+            }else if scoreCount >= 71 && scoreCount <= 80{
+                scoreLabel.fontColor=UIColor.purple
+            }else if scoreCount >= 81{
+                scoreLabel.fontColor=UIColor.init(red: 245/255, green: 209/255, blue: 0, alpha: 1)
             }
+                scoreLabel.text=String(scoreCount)
+            makeTissue()
+            print("position3")
         }
         
         
@@ -170,10 +208,20 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     func makeUnderBox(){
+        print(UIScreen.main.bounds.width)
         let UnderBox=SKSpriteNode(imageNamed: "box")
         UnderBox.size=CGSize(width: UIScreen.main.bounds.width * 0.87, height: UIScreen.main.bounds.width * 0.573)
-        UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+        if(UIScreen.main.bounds.width==375){
+            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
             * 0.6)
+        }else if(UIScreen.main.bounds.width==414){
+            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+            * 0.8)
+        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
+            UnderBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+            * 0.5)
+        }
+        
         UnderBox.zPosition=0.6
         self.addChild(UnderBox)
     }
@@ -181,13 +229,29 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //結果表示
     func makeResultLabel(){
-        resultLabel.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.width * 0.4)
-        resultLabel.text=String(scoreCount)
-        resultLabel.backgroundColor=UIColor.blue
+        resultLabel.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.width * 0.2)
+        resultLabel.text="今回の記録\(String(scoreCount))枚!!"
+        resultLabel.backgroundColor=UIColor.cyan
         resultLabel.textAlignment=NSTextAlignment.center
-        resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5)
-        resultLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.2)
+        if(UIScreen.main.bounds.width==375 || UIScreen.main.bounds.width==414){
+        resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
+        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768){
+            resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
+        }
+        resultLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.1)
         self.view?.addSubview(resultLabel)
+        
+    }
+    
+    func makeResultLabelCover(){
+        resultLabelCover.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.3)
+        resultLabelCover.backgroundColor=UIColor.green
+        if(UIScreen.main.bounds.width==375 || UIScreen.main.bounds.width==414){
+        resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
+        }else if(UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
+            resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
+        }
+        self.view?.addSubview(resultLabelCover)
         
     }
     
@@ -239,7 +303,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         tissue.name="tissue"
         self.addChild(tissue)
-        tissueArray.append(tissue)
+        print("maketissue")
     }
     
     func makeTouch(){
@@ -253,13 +317,23 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //リスタートノード
     func makeRestartTouch(){
-        let restartNode=SKSpriteNode()
+        let restartNode=SKSpriteNode(imageNamed: "restart")
         restartNode.size=CGSize(width: UIScreen.main.bounds.width * 0.34, height: UIScreen.main.bounds.width * 0.27)
         restartNode.position=CGPoint(x: UIScreen.main.bounds.width * 0.25, y: UIScreen.main.bounds.width * 0.578)
         restartNode.name="restart"
         restartNode.zPosition=1
         restartNode.color=UIColor.red
         self.addChild(restartNode)
+    }
+    
+    //ツイートノード
+    func makeTweetTouch(){
+        let tweetNode=SKSpriteNode(imageNamed: "tweet")
+        tweetNode.size=CGSize(width: UIScreen.main.bounds.width * 0.34, height: UIScreen.main.bounds.width * 0.27)
+        tweetNode.position=CGPoint(x: UIScreen.main.bounds.width * 0.75, y: UIScreen.main.bounds.width * 0.578)
+        tweetNode.name="tweet"
+        tweetNode.zPosition=1
+        self.addChild(tweetNode)
     }
     
     func makeEndTouch(){
@@ -274,8 +348,20 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     func makeAboveBox(){
         let AboveBox=SKSpriteNode(imageNamed: "aboveBox")
         AboveBox.size=CGSize(width: UIScreen.main.bounds.width * 0.87, height: UIScreen.main.bounds.width * 0.573)
-        AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+        
+        if(UIScreen.main.bounds.width==375){
+            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
             * 0.6)
+            
+        }else if(UIScreen.main.bounds.width==414){
+            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+            * 0.8)
+            
+        }else if( UIScreen.main.bounds.width==834 || UIScreen.main.bounds.width==768 || UIScreen.main.bounds.width==1024){
+            AboveBox.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.width
+            * 0.5)
+        }
+        
         AboveBox.zPosition=1
         self.addChild(AboveBox)
     }
@@ -312,8 +398,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             makeEndTouch()
             tissue.removeFromParent()
             gameTimer.invalidate()
+            makeResultLabelCover()
             makeResultLabel()
             makeRestartTouch()
+            makeTweetTouch()
+            playSound4()
         }
         if count <= 10{
             timerLabel.fontColor=UIColor.yellow
@@ -321,9 +410,46 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         if count <= 5{
             timerLabel.fontColor=UIColor.red
         }
+        
+        if(count <= 5 && count >= 1){
+            playSound2()
+        }
         timerLabel.text=String(count)
         count-=1
         
+    }
+    
+    //抜くときの音
+    func playSound1(){
+        let sound:SKAction = SKAction.playSoundFileNamed("sound1.mp3", waitForCompletion: true)
+        self.run(sound)
+    }
+    
+    //カウントダウンの音(3.2.1)
+    func playSound2(){
+        let sound:SKAction = SKAction.playSoundFileNamed("sound3.mp3", waitForCompletion: true)
+        self.run(sound)
+    }
+    
+    //カウントダウンの音(0)
+    func playSound4(){
+        let sound:SKAction = SKAction.playSoundFileNamed("sound2.mp3", waitForCompletion: true)
+        self.run(sound)
+    }
+    
+    
+    //bgm
+    func playBgm(){
+        let fileURL : NSURL = NSURL(fileURLWithPath: soundFilePath as String)
+        do{
+            player = try AVAudioPlayer(contentsOf: fileURL as URL)
+            player.numberOfLoops = -1
+            player.volume=0.4
+        }catch{
+            print("error")
+        }
+        
+        player.play()
     }
     
     
