@@ -9,8 +9,11 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GoogleMobileAds
 
 class GameViewController: UIViewController {
+    
+    var bannerView: GADBannerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,14 @@ class GameViewController: UIViewController {
         let scene = firstScene(size:skView.frame.size)
         // ビューにシーンを表示する
         skView.presentScene(scene)
+        
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self as? GADBannerViewDelegate
+        bannerView.frame = CGRect(x:0,y:(self.view.bounds.height-self.view.bounds.height/12),width:self.view.bounds.width,height:self.view.bounds.height/12)
+        self.view.addSubview(bannerView)
         
        
     }

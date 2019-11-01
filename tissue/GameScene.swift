@@ -9,10 +9,12 @@
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import GoogleMobileAds
 
 
-class GameScene: SKScene,SKPhysicsContactDelegate {
+class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
     
+    var bannerView: GADBannerView!
     //tissueノード
     var tissue=SKSpriteNode()
     //tissueノードの位置
@@ -25,6 +27,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var leftBar=SKSpriteNode()
     var rightBar=SKSpriteNode()
     var hitBar=SKSpriteNode()
+    
+    //ハイスコア保存用変数
+    public static let userDefaults = UserDefaults.standard
     
    
     
@@ -64,6 +69,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         makeTimer()
         makeScoreLabelNode()
         playBgm()
+        
+        //デフォルト値
+        GameScene.userDefaults.register(defaults: ["score": 0])
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -239,6 +248,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         }
         resultLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.1)
         self.view?.addSubview(resultLabel)
+        
+        let HighScore = GameScene.userDefaults.integer(forKey: "score")
+        
+        if(HighScore<scoreCount){
+            GameScene.userDefaults.set(scoreCount, forKey: "score")
+        }
+        
+        
         
     }
     
