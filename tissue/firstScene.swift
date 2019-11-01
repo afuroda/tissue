@@ -42,7 +42,8 @@ class firstScene : SKScene{
                 let scene = BeforeScene(size: self.scene!.size)
                 scene.scaleMode = SKSceneScaleMode.aspectFill
                 self.view!.presentScene(scene)
-                
+                highScoreLabel.removeFromSuperview()
+                highScoreLabelCover.removeFromSuperview()
             }
             
             if let touch = touches.first as UITouch? {
@@ -115,10 +116,10 @@ class firstScene : SKScene{
         highScoreLabel.textAlignment=NSTextAlignment.center
         if(UIScreen.main.bounds.width<=414){
         highScoreLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5)
-        }else if(UIScreen.main.bounds.width >= 834){
-            highScoreLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
+        }else if(UIScreen.main.bounds.width >= 768){
+            highScoreLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.8)
         }
-        highScoreLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.07)
+        highScoreLabel.font = UIFont(name: "GN-Kin-iro_SansSerif", size: UIScreen.main.bounds.width * 0.1)
         self.view?.addSubview(highScoreLabel)
     }
     
@@ -127,8 +128,8 @@ class firstScene : SKScene{
         highScoreLabelCover.backgroundColor=UIColor.green
         if(UIScreen.main.bounds.width<=414){
         highScoreLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5)
-        }else if(UIScreen.main.bounds.width>=834){
-            highScoreLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
+        }else if(UIScreen.main.bounds.width>=768){
+            highScoreLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.8)
         }
         self.view?.addSubview(highScoreLabelCover)
         

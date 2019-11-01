@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GN-Kin-iro_SansSerif.ttf</string>
+		<string>kkm_analogtv.ttf</string>
+	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-5719821723126134~9456511403
 ca-app-pub-5719821723126134~9456511403

@@ -48,6 +48,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
     var resultLabel=UILabel()
     var resultLabelCover=UILabel()
     
+    //ハイスコア表示
+    var highScoreLabel=UILabel()
+    
     //bgm
     var player:AVAudioPlayer!
     let soundFilePath : NSString = Bundle.main.path(forResource: "gameSound", ofType: "mp3")! as NSString
@@ -72,6 +75,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
         
         //デフォルト値
         GameScene.userDefaults.register(defaults: ["score": 0])
+        
+        print(UIScreen.main.bounds.width)
         
     }
     
@@ -243,16 +248,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
         resultLabel.textAlignment=NSTextAlignment.center
         if(UIScreen.main.bounds.width<=414){
         resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
-        }else if(UIScreen.main.bounds.width >= 834){
+        }else if(UIScreen.main.bounds.width >= 768){
             resultLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
         }
-        resultLabel.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.width*0.1)
+        resultLabel.font = UIFont(name: "GN-Kin-iro_SansSerif", size: UIScreen.main.bounds.width * 0.15)
         self.view?.addSubview(resultLabel)
         
         let HighScore = GameScene.userDefaults.integer(forKey: "score")
         
         if(HighScore<scoreCount){
             GameScene.userDefaults.set(scoreCount, forKey: "score")
+            makeHighScoreLabel()
         }
         
         
@@ -264,10 +270,23 @@ class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
         resultLabelCover.backgroundColor=UIColor.green
         if(UIScreen.main.bounds.width<=414){
         resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.4)
-        }else if(UIScreen.main.bounds.width>=834){
+        }else if(UIScreen.main.bounds.width>=768){
             resultLabelCover.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.3)
         }
         self.view?.addSubview(resultLabelCover)
+        
+    }
+    
+    func makeHighScoreLabel(){
+        highScoreLabel.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.2)
+        highScoreLabel.text="きろくこうしん!"
+        if(UIScreen.main.bounds.width<=414){
+        highScoreLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.45, y: UIScreen.main.bounds.height * 0.25)
+        }else if(UIScreen.main.bounds.width>=768){
+            highScoreLabel.layer.position=CGPoint(x: UIScreen.main.bounds.width * 0.45, y: UIScreen.main.bounds.height * 0.15)
+        }
+        highScoreLabel.font = UIFont(name: "KKM-AnalogTerevisionFont", size: UIScreen.main.bounds.width * 0.1)
+        self.view?.addSubview(highScoreLabel)
         
     }
     
@@ -374,15 +393,18 @@ class GameScene: SKScene,SKPhysicsContactDelegate,GADBannerViewDelegate {
     
     func makeTimerLabel(){
         timerLabel.position=CGPoint(x: UIScreen.main.bounds.width * 0.1, y: UIScreen.main.bounds.height * 0.9)
-        timerLabel.fontSize=40
+        timerLabel.fontSize=UIScreen.main.bounds.width * 0.1
+        timerLabel.fontName="KKM-AnalogTerevisionFont"
         timerLabel.text="15"
+        
         self.addChild(timerLabel)
     }
     
     func makeScoreLabelNode(){
         scoreLabel.position=CGPoint(x: UIScreen.main.bounds.width * 0.9, y: UIScreen.main.bounds.height * 0.9)
-        scoreLabel.fontSize=40
+        scoreLabel.fontSize=UIScreen.main.bounds.width * 0.1
         scoreLabel.text=String(scoreCount)
+        scoreLabel.fontName="KKM-AnalogTerevisionFont"
         self.addChild(scoreLabel)
     }
     

@@ -37,7 +37,7 @@ class BeforeScene : SKScene{
     }
     
     func makeTimer(){
-        let t=Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timer), userInfo: nil, repeats: true)
+        _=Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timer), userInfo: nil, repeats: true)
     }
     
     //カウントダウンの音(3.2.1)
@@ -54,7 +54,7 @@ class BeforeScene : SKScene{
     
     func makeLabel(){
         // ラベルを作る
-        countLabel = UILabel(frame: CGRect(x:0,y:0,width:UIScreen.main.bounds.width*0.5,height:UIScreen.main.bounds.height*0.5))
+        countLabel = UILabel(frame: CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height))
         
         // ラベルの色
         countLabel.backgroundColor = UIColor.clear
@@ -63,14 +63,13 @@ class BeforeScene : SKScene{
         // テキストの色
         countLabel.textColor = UIColor.black
         
-        //テキストのサイズ
-        countLabel.font=countLabel.font.withSize(80)
-        
         // テキストを中央寄せ
         countLabel.textAlignment = NSTextAlignment.center
         
+        countLabel.font = UIFont(name: "KKM-AnalogTerevisionFont", size: UIScreen.main.bounds.width * 0.5)
+        
         // ラベルの位置
-        countLabel.layer.position = CGPoint(x: UIScreen.main.bounds.width/2,y: 200)
+        countLabel.layer.position = CGPoint(x: UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width/16,y: UIScreen.main.bounds.height/2)
         self.view?.addSubview(countLabel)
     }
     

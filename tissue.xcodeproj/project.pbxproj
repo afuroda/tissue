@@ -33,6 +33,8 @@
 		1EE9AFFD236B7F4500EDA8E3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE9AFFC236B7F4500EDA8E3 /* MessageUI.framework */; };
 		1EE9AFFF236B7F5100EDA8E3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE9AFFE236B7F5100EDA8E3 /* StoreKit.framework */; };
 		1EE9B001236B7F6100EDA8E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE9B000236B7F6100EDA8E3 /* SystemConfiguration.framework */; };
+		1EE9B005236C9EA500EDA8E3 /* kkm_analogtv.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE9B004236C9EA500EDA8E3 /* kkm_analogtv.ttf */; };
+		1EE9B007236CA55E00EDA8E3 /* GN-Kin-iro_SansSerif.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE9B006236CA55E00EDA8E3 /* GN-Kin-iro_SansSerif.ttf */; };
 		F769C088F79B55557239DB8B /* Pods_tissue_tissueUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA752DFCEABDB7C76705A588 /* Pods_tissue_tissueUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		1EE9AFFC236B7F4500EDA8E3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1EE9AFFE236B7F5100EDA8E3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1EE9B000236B7F6100EDA8E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1EE9B004236C9EA500EDA8E3 /* kkm_analogtv.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = kkm_analogtv.ttf; path = ../../tissueFont/kkm_analogtv.ttf; sourceTree = "<group>"; };
+		1EE9B006236CA55E00EDA8E3 /* GN-Kin-iro_SansSerif.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-Kin-iro_SansSerif.ttf"; path = "../../../../../Users/kouki/Downloads/GN-Kin-iro_SansSerif/GN-Kin-iro_SansSerif.ttf"; sourceTree = "<group>"; };
 		43C7D7143B7724355F2775DA /* Pods-tissue-tissueUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tissue-tissueUITests.debug.xcconfig"; path = "Target Support Files/Pods-tissue-tissueUITests/Pods-tissue-tissueUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74C743ED7A7EE12F6AB310F6 /* Pods_tissue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tissue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA752DFCEABDB7C76705A588 /* Pods_tissue_tissueUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tissue_tissueUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +142,7 @@
 		1E1375EA22E23901009705BB /* tissue */ = {
 			isa = PBXGroup;
 			children = (
+				1EE9B006236CA55E00EDA8E3 /* GN-Kin-iro_SansSerif.ttf */,
 				1EE9AFEB236B7EAC00EDA8E3 /* GoogleMobileAds.framework */,
 				1E24479C2368C3E000188EAC /* gameSound.mp3 */,
 				1E24479B2368C3E000188EAC /* gameSound2.mp3 */,
@@ -153,6 +158,7 @@
 				1E1375FA22E23903009705BB /* LaunchScreen.storyboard */,
 				1E13761122E240AC009705BB /* firstScene.swift */,
 				1E109A7F2306F0D0006BCB82 /* Before.swift */,
+				1EE9B004236C9EA500EDA8E3 /* kkm_analogtv.ttf */,
 				1E1375FD22E23903009705BB /* Info.plist */,
 			);
 			path = tissue;
@@ -290,6 +296,8 @@
 				1E1375F922E23903009705BB /* Assets.xcassets in Resources */,
 				1E24479A2368C0CC00188EAC /* sound3.mp3 in Resources */,
 				1E2447A02368C4F500188EAC /* sound2.mp3 in Resources */,
+				1EE9B007236CA55E00EDA8E3 /* GN-Kin-iro_SansSerif.ttf in Resources */,
+				1EE9B005236C9EA500EDA8E3 /* kkm_analogtv.ttf in Resources */,
 				1E2447982368C0CC00188EAC /* sound4.mp3 in Resources */,
 				1E24479E2368C3E000188EAC /* gameSound.mp3 in Resources */,
 				1E1375FC22E23903009705BB /* LaunchScreen.storyboard in Resources */,
